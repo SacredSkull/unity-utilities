@@ -5,6 +5,9 @@ deploy:
   provider: releases
   api_key:
     secure: aDMdBf8GmKBrvD/KPbq+NU3cHWzhJTa6G3oVcoRZjNanuA5N5vcyHDaoYS/MVJc+RLNjRNhchHGg/S4+43R4UnSLDjtQzDcHmykMOb3ti4vU+52emrZmT7JFHcEY7D354L9fieaMTRU3LCO4odrNJaJeGdtGx0ggDDwlcRuSUbWYSvYMRSS6ErbcGbEDo/WzB+HgzqOmmWHSHIrTBxeJITiAWxp0+gBZIgOPZ5fOJ4A062KbP3BCoD4iDcgNluhToz6c80Ihb7nC6TH3dj9B/fl1xq62B37yYvBKXcFg+xmfrPXcBBE10n9MULaBTrwFcnWe8Ao4AQSOl2obBSesL/aWKjTrJBa/59k8mvCfUNaIYH72Ys5KHfQITd2hh/n0Gnu8zHSXj49A24LpNEr9aUgv7XJlAEh+RjBV7/vRfS0EhYCuFYz5jZhhNwuCaqCr+KypcDMxVThlDrXpNxacKSV1hqnn7uiuN87Z/zpCzY1AZe7sm5cU3SrdFVGhPcVyDQlfHb1GRoer6OmtHjRkOwyYT6/CRou8SRagbK6ijxgkgnXA137fUszgVRaznfC4TQilWSNe48DiKsqz/iMXI1xXsHzjG0zHhCAowX1SbQTKIDZlkIj1L28BFi6nMTmp7/XPQbNeQi2zOsdTSk6c3A6ptO4HsxgI+pbpQtXPq9A=
-  file: UnityUtilities.dll
+  file_glob: true
+  file: 
+    - bin/Release/*.dll
+    - bin/Release/*.pdb
   on:
-    repo: SacredSkull/unity-utilities
+    tags: true
