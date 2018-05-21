@@ -89,7 +89,7 @@ namespace UnityUtilities.Collections.Grid {
                 }
                 layerName = layer.Key;
                 element = layer.Value.Get(x, y);
-                if (element != null && element.ID != 0)
+                if (element != null)
                     break;
             }
 

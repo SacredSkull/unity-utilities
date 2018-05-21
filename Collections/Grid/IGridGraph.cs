@@ -6,8 +6,8 @@ namespace UnityUtilities.Collections.Grid {
         int Cost(Vector2 vect);
         int Cost(int x, int y);
         int CountNodes();
-        bool isPathable(Vector2 coord);
-        bool isPathable(int x, int y);
-        List<Vector2> Neighbours(Vector2 positionVector, Vector2[] WhitelistedCoords = null);
+        bool isGeometryPathable(Vector2 coord);
+        bool isGeometryPathable(int x, int y);
+        List<Vector2> Neighbours(Vector2 originVector, Vector2[] WhitelistedCoords = null, Vector2[] BlacklistedCoords = null);
     }
 }

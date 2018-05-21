@@ -1,0 +1,21 @@
+C:\Users\Peter\UnityUtilities\obj\Debug\UnityUtilities.csprojResolveAssemblyReference.cache
+C:\Users\Peter\UnityUtilities\obj\Debug\UnityUtilities.csproj.CoreCompileInputs.cache
+C:\Users\Peter\UnityUtilities\bin\Debug\UnityUtilities.dll
+C:\Users\Peter\UnityUtilities\bin\Debug\UnityUtilities.pdb
+C:\Users\Peter\UnityUtilities\bin\Debug\Priority Queue.dll
+C:\Users\Peter\UnityUtilities\bin\Debug\UnityEngine.dll
+C:\Users\Peter\UnityUtilities\bin\Debug\Priority Queue.pdb
+C:\Users\Peter\UnityUtilities\bin\Debug\Priority Queue.xml
+C:\Users\Peter\UnityUtilities\bin\Debug\UnityEngine.xml
+C:\Users\Peter\UnityUtilities\obj\Debug\UnityUtilities.dll
+C:\Users\Peter\UnityUtilities\obj\Debug\UnityUtilities.pdb
+C:\Users\Peter\GitHub\UnityUtilities\bin\Debug\UnityUtilities.dll
+C:\Users\Peter\GitHub\UnityUtilities\bin\Debug\UnityUtilities.pdb
+C:\Users\Peter\GitHub\UnityUtilities\bin\Debug\Priority Queue.dll
+C:\Users\Peter\GitHub\UnityUtilities\bin\Debug\Priority Queue.pdb
+C:\Users\Peter\GitHub\UnityUtilities\bin\Debug\Priority Queue.xml
+C:\Users\Peter\GitHub\UnityUtilities\obj\Debug\UnityUtilities.csprojAssemblyReference.cache
+C:\Users\Peter\GitHub\UnityUtilities\obj\Debug\UnityUtilities.csproj.CoreCompileInputs.cache
+C:\Users\Peter\GitHub\UnityUtilities\obj\Debug\UnityUtilities.csproj.CopyComplete
+C:\Users\Peter\GitHub\UnityUtilities\obj\Debug\UnityUtilities.dll
+C:\Users\Peter\GitHub\UnityUtilities\obj\Debug\UnityUtilities.pdb

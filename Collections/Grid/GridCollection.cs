@@ -8,7 +8,6 @@ namespace UnityUtilities.Collections.Grid {
         private readonly Dictionary<int, Dictionary<int, GridPiece<T>>> gridDictionary;
         private readonly GridPiece<T> emptyPiece;
        
-
         public GridCollection(GridPiece<T> emptyPiece, int? rowCount = null, int? columnCount = null) {
             gridDictionary = new Dictionary<int, Dictionary<int, GridPiece<T>>>();
             this.emptyPiece = emptyPiece;

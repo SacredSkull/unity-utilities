@@ -5,8 +5,8 @@ using UnityEngine;
 
 namespace UnityUtilities.Collections.Grid {
     public interface INodeValidator {
-        bool isPathable(int x, int y);
-        bool isPathable(Vector2 coord);
+        bool isGeometryPathable(int x, int y);
+        bool isGeometryPathable(Vector2 coord);
     }
 
     public class GridGraph<T> : INodeValidator, IGridGraph where T : IGridLocator {
@@ -39,7 +39,7 @@ namespace UnityUtilities.Collections.Grid {
             return (int)LayeredGrid.Average(x => x.Area);
         }
 
-        public bool isPathable(int x, int y) {
+        public bool isGeometryPathable(int x, int y) {
             GridPiece<T> geomePiece = GeometryGrid.Get(x, y);
             GridPiece<T> entPiece = EntityGrid.Get(x, y);
 
@@ -49,8 +49,8 @@ namespace UnityUtilities.Collections.Grid {
             return ValidPathIDs.Contains(geomePiece.ID);
         }
 
-        public bool isPathable(Vector2 coord) {
-            return isPathable((int)coord.x, (int)coord.y);
+        public bool isGeometryPathable(Vector2 coord) {
+            return isGeometryPathable((int)coord.x, (int)coord.y);
         }
 
         public int Cost(Vector2 vect) {
@@ -61,36 +61,49 @@ namespace UnityUtilities.Collections.Grid {
             return Cost(new Vector2(x, y));
         }
 
-        public List<Vector2> Neighbours(Vector2 positionVector, Vector2[] WhitelistedCoords) {
-            int x = (int)positionVector.x;
-            int y = (int)positionVector.y;
+        public List<Vector2> Neighbours(Vector2 originVector, Vector2[] whitelistedCoords, Vector2[] blacklistedCoords) {
+            int x = (int)originVector.x;
+            int y = (int)originVector.y;
 
             List<Vector2> edges = new List<Vector2>();
 
-            if(WhitelistedCoords == null)
-                WhitelistedCoords = new Vector2[0];
+            if(whitelistedCoords == null)
+                whitelistedCoords = new Vector2[0];
+            if(blacklistedCoords == null)
+                blacklistedCoords = new Vector2[0];
+
+            // Anything present in both lists is removed, with priority going to the whitelist.
+            Vector2[] overridenBlacklist = blacklistedCoords.Except(whitelistedCoords).ToArray();
 
             // Left
-            if (GeometryGrid.Contains(positionVector + DIR_LEFT) && (WhitelistedCoords.Contains(positionVector - DIR_RIGHT) || isPathable(positionVector + DIR_LEFT))) {
-                edges.Add(positionVector + DIR_LEFT);
+            if (CheckSide(originVector, DIR_LEFT, overridenBlacklist)) {
+                edges.Add(originVector + DIR_LEFT);
             }
 
             // Up
-            if (GeometryGrid.Contains(positionVector + DIR_UP) && (WhitelistedCoords.Contains(positionVector - DIR_DOWN) || isPathable(positionVector + DIR_UP))) {
-                edges.Add(positionVector + DIR_UP);
+            if (CheckSide(originVector, DIR_UP, overridenBlacklist)) {
+                edges.Add(originVector + DIR_UP);
             }
 
             // Down
-            if (GeometryGrid.Contains(positionVector + DIR_DOWN) && (WhitelistedCoords.Contains(positionVector - DIR_UP) || isPathable(positionVector + DIR_DOWN))) {
-                edges.Add(positionVector + DIR_DOWN);
+            if (CheckSide(originVector, DIR_DOWN, overridenBlacklist)) {
+                edges.Add(originVector + DIR_DOWN);
             }
 
             // Right
-            if (GeometryGrid.Contains(positionVector + DIR_RIGHT) && (WhitelistedCoords.Contains(positionVector - DIR_LEFT) || isPathable(positionVector + DIR_RIGHT))) {
-                edges.Add(positionVector + DIR_RIGHT);
+            if (CheckSide(originVector, DIR_RIGHT, overridenBlacklist)) {
+                edges.Add(originVector + DIR_RIGHT);
             }
 
             return edges;
         }
+
+        // 1. The geometry must be able to contain the destination
+        // 2. If the blacklist contains the vector, it is not pathable - unless it exists in the whitelist (whitelist priority is greater - see @Neighbours function).
+        // 3. The geometry must have a floor of a passable kind. A null GridPiece will not work.
+        private bool CheckSide(Vector2 originVector, Vector2 direction, IEnumerable<Vector2> blacklist) =>
+            GeometryGrid.Contains(originVector + direction)
+            && !blacklist.Contains(originVector + direction)
+            && isGeometryPathable(originVector + direction);
     }
 }
