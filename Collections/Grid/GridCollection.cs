@@ -124,7 +124,7 @@ namespace UnityUtilities.Collections.Grid {
         }
 
         public void Swap(Vector2 first, Vector2 second) {
-            if(first == second) return;
+            if(first.Equals(second)) return;
 
             T valueCopy = Get(first).Value;
             int idCopy = Get(first).ID;

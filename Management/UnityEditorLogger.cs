@@ -2,15 +2,11 @@
 using System.Diagnostics;
 using System.Reflection;
 using System.Text;
-using JetBrains.Annotations;
 using Debug = UnityEngine.Debug;
 using Object = System.Object;
 
-namespace UnityUtilities.Management
-{
-    [UsedImplicitly]
-    public class UnityEditorLogger : ILogger
-    {
+namespace UnityUtilities.Management {
+    public class UnityEditorLogger : ILogger {
         public void UnityLog(string s, LogLevels logLevels = LogLevels.DEBUG) {
             DateTime date = DateTime.Now;
             string nicetime = date.ToString("[HH:mm:ss] ");
@@ -37,11 +33,9 @@ namespace UnityUtilities.Management
             }
         }
 
-        public void UnityLog(int i, LogLevels logLevels = LogLevels.DEBUG)
-        {
+        public void UnityLog(int i, LogLevels logLevels = LogLevels.DEBUG) {
             string s = i.ToString();
-            switch (logLevels)
-            {
+            switch (logLevels) {
                 case LogLevels.DEBUG:
                     s = "[DEBUG]" + s;
                     Debug.Log(s);
@@ -65,8 +59,7 @@ namespace UnityUtilities.Management
             }
         }
 
-        public static string var_dump(Object o)
-        {
+        public static string var_dump(Object o) {
             StringBuilder sb = new StringBuilder();
 
             // Include the type of the object
@@ -76,29 +69,23 @@ namespace UnityUtilities.Management
             // Include information for each Field
             sb.Append("\r\n\r\nFields:");
             FieldInfo[] fi = type.GetFields();
-            if (fi.Length > 0)
-            {
-                foreach (FieldInfo f in fi)
-                {
+            if (fi.Length > 0) {
+                foreach (FieldInfo f in fi) {
                     sb.Append("\r\n " + f + " = " +
                               f.GetValue(o));
                 }
-            }
-            else
+            } else
                 sb.Append("\r\n None");
 
             // Include information for each Property
             sb.Append("\r\n\r\nProperties:");
             PropertyInfo[] pi = type.GetProperties();
-            if (pi.Length > 0)
-            {
-                foreach (PropertyInfo p in pi)
-                {
+            if (pi.Length > 0) {
+                foreach (PropertyInfo p in pi) {
                     sb.Append("\r\n " + p + " = " +
                               p.GetValue(o, null));
                 }
-            }
-            else
+            } else 
                 sb.Append("\r\n None");
 
             return sb.ToString();

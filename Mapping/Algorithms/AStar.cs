@@ -3,10 +3,8 @@ using Priority_Queue;
 using UnityEngine;
 using UnityUtilities.Collections.Grid;
 
-namespace UnityUtilities.Mapping.Algorithms
-{
-    public class AStar : Pathing
-    {
+namespace UnityUtilities.Mapping.Algorithms {
+    public class AStar : Pathing {
         public AStar(IGridGraph _graph) : base(_graph) { }
         
         public override KeyValuePair<bool, IList<Vector2>> ComputePaths(Vector2 startPos, Vector2 destinationPos) {
@@ -50,8 +48,8 @@ namespace UnityUtilities.Mapping.Algorithms
             // Add the final vector...
 
             // Unravel shortest path
-            while (currentPos != startPos) {
-                if (!cameFromNode.ContainsKey(currentPos) && currentPos != destinationPos)
+            while (!currentPos.Equals(startPos)) {
+                if (!cameFromNode.ContainsKey(currentPos) && !currentPos.Equals(destinationPos))
                     break;
 
                 path.Add(cameFromNode[currentPos]);
